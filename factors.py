@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import sys
-import time
 
 def getFactors(givenNumber):
     factor1 = 0
@@ -16,14 +15,10 @@ def getFactors(givenNumber):
 def factorize_from_file(filename):
     try:
         with open(filename, 'r') as file:
-            start_time = time.time()
             for line in file:
                 number = int(line.strip())
                 result = getFactors(number)
                 print(result)
-            end_time = time.time()
-            elapsed_time = end_time - start_time
-            print(f"Script execution time: {elapsed_time:.4f} seconds")
     except FileNotFoundError:
         print(f"File '{filename}' not found.")
     except ValueError:
