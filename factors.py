@@ -26,7 +26,7 @@ def factorize_from_file(filename):
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: ./factor.py <filename>")
+        print("Usage: ./factor.py <file>")
     else:
         filename = sys.argv[1]
         factorize_from_file(filename)
