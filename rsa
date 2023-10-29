@@ -1,0 +1,38 @@
+#!/usr/bin/python3
+import sys
+
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def getPrimeFactors(givenNumber):
+    for number in range(2, givenNumber):
+        if givenNumber % number == 0 and is_prime(number):
+            factor2 = number
+            factor1 = givenNumber // factor2
+            if is_prime(factor1):
+                return f'{givenNumber}={factor1}*{factor2}'
+    return f"Unable to find prime factors for {givenNumber}."
+
+def factorize_from_file(filename):
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                number = int(line.strip())
+                result = getPrimeFactors(number)
+                print(result)
+    except FileNotFoundError:
+        print(f"File '{filename}' not found.")
+    except ValueError:
+        print(f"Invalid data in '{filename}'. Please make sure each line contains a valid number.")
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Usage: ./factor.py <file>")
+    else:
+        filename = sys.argv[1]
+        factorize_from_file(filename)
